@@ -14,4 +14,15 @@ Roles : Administrator , StoreOwner
 Administrator : Full Access
 StoreOwner : Authorized to add categories and Furnitures
 User: view categories and Furnitures                
- 
+
+
+
+
+
+
+
+
+
+
+
+
