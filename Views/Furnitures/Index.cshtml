@@ -1,0 +1,64 @@
+﻿@model IEnumerable<GeorgianFurniture.Models.Furniture>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.bootstrap.min.css" rel="stylesheet" />
+
+<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js "></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#ftable').DataTable();
+    });
+</script>
+<h1>Index</h1>
+@if (User.IsInRole("Administrator") || User.IsInRole("StoreOwner"))
+{
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+}
+<table class="table" id="ftable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.furnitureType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.color)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.categoryID)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.furnitureType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.color)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.categoryID)
+                </td>
+                @if (User.IsInRole("Administrator") || User.IsInRole("StoreOwner"))
+                {
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.furnitureID">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.furnitureID">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.furnitureID">Delete</a>
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
